@@ -1,0 +1,779 @@
+Microsoft Windows [Version 10.0.22621.450]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\Shahriyar_Haseeb\Code>cda_env\Scripts\activate.bat
+
+(cda_env) D:\Shahriyar_Haseeb\Code>cd cda_env
+
+(cda_env) D:\Shahriyar_Haseeb\Code\cda_env>python pretrained-encoder-unet.py
+Segmentation Models: using `keras` framework.
+Done with PREPROCESSING!!!!!!
+Making UNET model...
+2022-08-16 12:56:31.024721: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-08-16 12:56:31.747721: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21676 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 3090, pci bus id: 0000:01:00.0, compute capability: 8.6
+D:\Shahriyar_Haseeb\Code\cda_env\lib\site-packages\keras\optimizer_v2\adam.py:105: UserWarning: The `lr` argument is deprecated, use `learning_rate` instead.
+  super(Adam, self).__init__(name, **kwargs)
+Model: "model_1"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to
+==================================================================================================
+ data (InputLayer)              [(None, None, None,  0           []
+                                 3)]
+
+ bn_data (BatchNormalization)   (None, None, None,   9           ['data[0][0]']
+                                3)
+
+ zero_padding2d (ZeroPadding2D)  (None, None, None,   0          ['bn_data[0][0]']
+                                3)
+
+ conv0 (Conv2D)                 (None, None, None,   9408        ['zero_padding2d[0][0]']
+                                64)
+
+ bn0 (BatchNormalization)       (None, None, None,   256         ['conv0[0][0]']
+                                64)
+
+ relu0 (Activation)             (None, None, None,   0           ['bn0[0][0]']
+                                64)
+
+ zero_padding2d_1 (ZeroPadding2  (None, None, None,   0          ['relu0[0][0]']
+ D)                             64)
+
+ pooling0 (MaxPooling2D)        (None, None, None,   0           ['zero_padding2d_1[0][0]']
+                                64)
+
+ stage1_unit1_bn1 (BatchNormali  (None, None, None,   256        ['pooling0[0][0]']
+ zation)                        64)
+
+ stage1_unit1_relu1 (Activation  (None, None, None,   0          ['stage1_unit1_bn1[0][0]']
+ )                              64)
+
+ zero_padding2d_2 (ZeroPadding2  (None, None, None,   0          ['stage1_unit1_relu1[0][0]']
+ D)                             64)
+
+ stage1_unit1_conv1 (Conv2D)    (None, None, None,   36864       ['zero_padding2d_2[0][0]']
+                                64)
+
+ stage1_unit1_bn2 (BatchNormali  (None, None, None,   256        ['stage1_unit1_conv1[0][0]']
+ zation)                        64)
+
+ stage1_unit1_relu2 (Activation  (None, None, None,   0          ['stage1_unit1_bn2[0][0]']
+ )                              64)
+
+ zero_padding2d_3 (ZeroPadding2  (None, None, None,   0          ['stage1_unit1_relu2[0][0]']
+ D)                             64)
+
+ stage1_unit1_conv2 (Conv2D)    (None, None, None,   36864       ['zero_padding2d_3[0][0]']
+                                64)
+
+ stage1_unit1_sc (Conv2D)       (None, None, None,   4096        ['stage1_unit1_relu1[0][0]']
+                                64)
+
+ add (Add)                      (None, None, None,   0           ['stage1_unit1_conv2[0][0]',
+                                64)                               'stage1_unit1_sc[0][0]']
+
+ stage1_unit2_bn1 (BatchNormali  (None, None, None,   256        ['add[0][0]']
+ zation)                        64)
+
+ stage1_unit2_relu1 (Activation  (None, None, None,   0          ['stage1_unit2_bn1[0][0]']
+ )                              64)
+
+ zero_padding2d_4 (ZeroPadding2  (None, None, None,   0          ['stage1_unit2_relu1[0][0]']
+ D)                             64)
+
+ stage1_unit2_conv1 (Conv2D)    (None, None, None,   36864       ['zero_padding2d_4[0][0]']
+                                64)
+
+ stage1_unit2_bn2 (BatchNormali  (None, None, None,   256        ['stage1_unit2_conv1[0][0]']
+ zation)                        64)
+
+ stage1_unit2_relu2 (Activation  (None, None, None,   0          ['stage1_unit2_bn2[0][0]']
+ )                              64)
+
+ zero_padding2d_5 (ZeroPadding2  (None, None, None,   0          ['stage1_unit2_relu2[0][0]']
+ D)                             64)
+
+ stage1_unit2_conv2 (Conv2D)    (None, None, None,   36864       ['zero_padding2d_5[0][0]']
+                                64)
+
+ add_1 (Add)                    (None, None, None,   0           ['stage1_unit2_conv2[0][0]',
+                                64)                               'add[0][0]']
+
+ stage1_unit3_bn1 (BatchNormali  (None, None, None,   256        ['add_1[0][0]']
+ zation)                        64)
+
+ stage1_unit3_relu1 (Activation  (None, None, None,   0          ['stage1_unit3_bn1[0][0]']
+ )                              64)
+
+ zero_padding2d_6 (ZeroPadding2  (None, None, None,   0          ['stage1_unit3_relu1[0][0]']
+ D)                             64)
+
+ stage1_unit3_conv1 (Conv2D)    (None, None, None,   36864       ['zero_padding2d_6[0][0]']
+                                64)
+
+ stage1_unit3_bn2 (BatchNormali  (None, None, None,   256        ['stage1_unit3_conv1[0][0]']
+ zation)                        64)
+
+ stage1_unit3_relu2 (Activation  (None, None, None,   0          ['stage1_unit3_bn2[0][0]']
+ )                              64)
+
+ zero_padding2d_7 (ZeroPadding2  (None, None, None,   0          ['stage1_unit3_relu2[0][0]']
+ D)                             64)
+
+ stage1_unit3_conv2 (Conv2D)    (None, None, None,   36864       ['zero_padding2d_7[0][0]']
+                                64)
+
+ add_2 (Add)                    (None, None, None,   0           ['stage1_unit3_conv2[0][0]',
+                                64)                               'add_1[0][0]']
+
+ stage2_unit1_bn1 (BatchNormali  (None, None, None,   256        ['add_2[0][0]']
+ zation)                        64)
+
+ stage2_unit1_relu1 (Activation  (None, None, None,   0          ['stage2_unit1_bn1[0][0]']
+ )                              64)
+
+ zero_padding2d_8 (ZeroPadding2  (None, None, None,   0          ['stage2_unit1_relu1[0][0]']
+ D)                             64)
+
+ stage2_unit1_conv1 (Conv2D)    (None, None, None,   73728       ['zero_padding2d_8[0][0]']
+                                128)
+
+ stage2_unit1_bn2 (BatchNormali  (None, None, None,   512        ['stage2_unit1_conv1[0][0]']
+ zation)                        128)
+
+ stage2_unit1_relu2 (Activation  (None, None, None,   0          ['stage2_unit1_bn2[0][0]']
+ )                              128)
+
+ zero_padding2d_9 (ZeroPadding2  (None, None, None,   0          ['stage2_unit1_relu2[0][0]']
+ D)                             128)
+
+ stage2_unit1_conv2 (Conv2D)    (None, None, None,   147456      ['zero_padding2d_9[0][0]']
+                                128)
+
+ stage2_unit1_sc (Conv2D)       (None, None, None,   8192        ['stage2_unit1_relu1[0][0]']
+                                128)
+
+ add_3 (Add)                    (None, None, None,   0           ['stage2_unit1_conv2[0][0]',
+                                128)                              'stage2_unit1_sc[0][0]']
+
+ stage2_unit2_bn1 (BatchNormali  (None, None, None,   512        ['add_3[0][0]']
+ zation)                        128)
+
+ stage2_unit2_relu1 (Activation  (None, None, None,   0          ['stage2_unit2_bn1[0][0]']
+ )                              128)
+
+ zero_padding2d_10 (ZeroPadding  (None, None, None,   0          ['stage2_unit2_relu1[0][0]']
+ 2D)                            128)
+
+ stage2_unit2_conv1 (Conv2D)    (None, None, None,   147456      ['zero_padding2d_10[0][0]']
+                                128)
+
+ stage2_unit2_bn2 (BatchNormali  (None, None, None,   512        ['stage2_unit2_conv1[0][0]']
+ zation)                        128)
+
+ stage2_unit2_relu2 (Activation  (None, None, None,   0          ['stage2_unit2_bn2[0][0]']
+ )                              128)
+
+ zero_padding2d_11 (ZeroPadding  (None, None, None,   0          ['stage2_unit2_relu2[0][0]']
+ 2D)                            128)
+
+ stage2_unit2_conv2 (Conv2D)    (None, None, None,   147456      ['zero_padding2d_11[0][0]']
+                                128)
+
+ add_4 (Add)                    (None, None, None,   0           ['stage2_unit2_conv2[0][0]',
+                                128)                              'add_3[0][0]']
+
+ stage2_unit3_bn1 (BatchNormali  (None, None, None,   512        ['add_4[0][0]']
+ zation)                        128)
+
+ stage2_unit3_relu1 (Activation  (None, None, None,   0          ['stage2_unit3_bn1[0][0]']
+ )                              128)
+
+ zero_padding2d_12 (ZeroPadding  (None, None, None,   0          ['stage2_unit3_relu1[0][0]']
+ 2D)                            128)
+
+ stage2_unit3_conv1 (Conv2D)    (None, None, None,   147456      ['zero_padding2d_12[0][0]']
+                                128)
+
+ stage2_unit3_bn2 (BatchNormali  (None, None, None,   512        ['stage2_unit3_conv1[0][0]']
+ zation)                        128)
+
+ stage2_unit3_relu2 (Activation  (None, None, None,   0          ['stage2_unit3_bn2[0][0]']
+ )                              128)
+
+ zero_padding2d_13 (ZeroPadding  (None, None, None,   0          ['stage2_unit3_relu2[0][0]']
+ 2D)                            128)
+
+ stage2_unit3_conv2 (Conv2D)    (None, None, None,   147456      ['zero_padding2d_13[0][0]']
+                                128)
+
+ add_5 (Add)                    (None, None, None,   0           ['stage2_unit3_conv2[0][0]',
+                                128)                              'add_4[0][0]']
+
+ stage2_unit4_bn1 (BatchNormali  (None, None, None,   512        ['add_5[0][0]']
+ zation)                        128)
+
+ stage2_unit4_relu1 (Activation  (None, None, None,   0          ['stage2_unit4_bn1[0][0]']
+ )                              128)
+
+ zero_padding2d_14 (ZeroPadding  (None, None, None,   0          ['stage2_unit4_relu1[0][0]']
+ 2D)                            128)
+
+ stage2_unit4_conv1 (Conv2D)    (None, None, None,   147456      ['zero_padding2d_14[0][0]']
+                                128)
+
+ stage2_unit4_bn2 (BatchNormali  (None, None, None,   512        ['stage2_unit4_conv1[0][0]']
+ zation)                        128)
+
+ stage2_unit4_relu2 (Activation  (None, None, None,   0          ['stage2_unit4_bn2[0][0]']
+ )                              128)
+
+ zero_padding2d_15 (ZeroPadding  (None, None, None,   0          ['stage2_unit4_relu2[0][0]']
+ 2D)                            128)
+
+ stage2_unit4_conv2 (Conv2D)    (None, None, None,   147456      ['zero_padding2d_15[0][0]']
+                                128)
+
+ add_6 (Add)                    (None, None, None,   0           ['stage2_unit4_conv2[0][0]',
+                                128)                              'add_5[0][0]']
+
+ stage3_unit1_bn1 (BatchNormali  (None, None, None,   512        ['add_6[0][0]']
+ zation)                        128)
+
+ stage3_unit1_relu1 (Activation  (None, None, None,   0          ['stage3_unit1_bn1[0][0]']
+ )                              128)
+
+ zero_padding2d_16 (ZeroPadding  (None, None, None,   0          ['stage3_unit1_relu1[0][0]']
+ 2D)                            128)
+
+ stage3_unit1_conv1 (Conv2D)    (None, None, None,   294912      ['zero_padding2d_16[0][0]']
+                                256)
+
+ stage3_unit1_bn2 (BatchNormali  (None, None, None,   1024       ['stage3_unit1_conv1[0][0]']
+ zation)                        256)
+
+ stage3_unit1_relu2 (Activation  (None, None, None,   0          ['stage3_unit1_bn2[0][0]']
+ )                              256)
+
+ zero_padding2d_17 (ZeroPadding  (None, None, None,   0          ['stage3_unit1_relu2[0][0]']
+ 2D)                            256)
+
+ stage3_unit1_conv2 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_17[0][0]']
+                                256)
+
+ stage3_unit1_sc (Conv2D)       (None, None, None,   32768       ['stage3_unit1_relu1[0][0]']
+                                256)
+
+ add_7 (Add)                    (None, None, None,   0           ['stage3_unit1_conv2[0][0]',
+                                256)                              'stage3_unit1_sc[0][0]']
+
+ stage3_unit2_bn1 (BatchNormali  (None, None, None,   1024       ['add_7[0][0]']
+ zation)                        256)
+
+ stage3_unit2_relu1 (Activation  (None, None, None,   0          ['stage3_unit2_bn1[0][0]']
+ )                              256)
+
+ zero_padding2d_18 (ZeroPadding  (None, None, None,   0          ['stage3_unit2_relu1[0][0]']
+ 2D)                            256)
+
+ stage3_unit2_conv1 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_18[0][0]']
+                                256)
+
+ stage3_unit2_bn2 (BatchNormali  (None, None, None,   1024       ['stage3_unit2_conv1[0][0]']
+ zation)                        256)
+
+ stage3_unit2_relu2 (Activation  (None, None, None,   0          ['stage3_unit2_bn2[0][0]']
+ )                              256)
+
+ zero_padding2d_19 (ZeroPadding  (None, None, None,   0          ['stage3_unit2_relu2[0][0]']
+ 2D)                            256)
+
+ stage3_unit2_conv2 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_19[0][0]']
+                                256)
+
+ add_8 (Add)                    (None, None, None,   0           ['stage3_unit2_conv2[0][0]',
+                                256)                              'add_7[0][0]']
+
+ stage3_unit3_bn1 (BatchNormali  (None, None, None,   1024       ['add_8[0][0]']
+ zation)                        256)
+
+ stage3_unit3_relu1 (Activation  (None, None, None,   0          ['stage3_unit3_bn1[0][0]']
+ )                              256)
+
+ zero_padding2d_20 (ZeroPadding  (None, None, None,   0          ['stage3_unit3_relu1[0][0]']
+ 2D)                            256)
+
+ stage3_unit3_conv1 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_20[0][0]']
+                                256)
+
+ stage3_unit3_bn2 (BatchNormali  (None, None, None,   1024       ['stage3_unit3_conv1[0][0]']
+ zation)                        256)
+
+ stage3_unit3_relu2 (Activation  (None, None, None,   0          ['stage3_unit3_bn2[0][0]']
+ )                              256)
+
+ zero_padding2d_21 (ZeroPadding  (None, None, None,   0          ['stage3_unit3_relu2[0][0]']
+ 2D)                            256)
+
+ stage3_unit3_conv2 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_21[0][0]']
+                                256)
+
+ add_9 (Add)                    (None, None, None,   0           ['stage3_unit3_conv2[0][0]',
+                                256)                              'add_8[0][0]']
+
+ stage3_unit4_bn1 (BatchNormali  (None, None, None,   1024       ['add_9[0][0]']
+ zation)                        256)
+
+ stage3_unit4_relu1 (Activation  (None, None, None,   0          ['stage3_unit4_bn1[0][0]']
+ )                              256)
+
+ zero_padding2d_22 (ZeroPadding  (None, None, None,   0          ['stage3_unit4_relu1[0][0]']
+ 2D)                            256)
+
+ stage3_unit4_conv1 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_22[0][0]']
+                                256)
+
+ stage3_unit4_bn2 (BatchNormali  (None, None, None,   1024       ['stage3_unit4_conv1[0][0]']
+ zation)                        256)
+
+ stage3_unit4_relu2 (Activation  (None, None, None,   0          ['stage3_unit4_bn2[0][0]']
+ )                              256)
+
+ zero_padding2d_23 (ZeroPadding  (None, None, None,   0          ['stage3_unit4_relu2[0][0]']
+ 2D)                            256)
+
+ stage3_unit4_conv2 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_23[0][0]']
+                                256)
+
+ add_10 (Add)                   (None, None, None,   0           ['stage3_unit4_conv2[0][0]',
+                                256)                              'add_9[0][0]']
+
+ stage3_unit5_bn1 (BatchNormali  (None, None, None,   1024       ['add_10[0][0]']
+ zation)                        256)
+
+ stage3_unit5_relu1 (Activation  (None, None, None,   0          ['stage3_unit5_bn1[0][0]']
+ )                              256)
+
+ zero_padding2d_24 (ZeroPadding  (None, None, None,   0          ['stage3_unit5_relu1[0][0]']
+ 2D)                            256)
+
+ stage3_unit5_conv1 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_24[0][0]']
+                                256)
+
+ stage3_unit5_bn2 (BatchNormali  (None, None, None,   1024       ['stage3_unit5_conv1[0][0]']
+ zation)                        256)
+
+ stage3_unit5_relu2 (Activation  (None, None, None,   0          ['stage3_unit5_bn2[0][0]']
+ )                              256)
+
+ zero_padding2d_25 (ZeroPadding  (None, None, None,   0          ['stage3_unit5_relu2[0][0]']
+ 2D)                            256)
+
+ stage3_unit5_conv2 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_25[0][0]']
+                                256)
+
+ add_11 (Add)                   (None, None, None,   0           ['stage3_unit5_conv2[0][0]',
+                                256)                              'add_10[0][0]']
+
+ stage3_unit6_bn1 (BatchNormali  (None, None, None,   1024       ['add_11[0][0]']
+ zation)                        256)
+
+ stage3_unit6_relu1 (Activation  (None, None, None,   0          ['stage3_unit6_bn1[0][0]']
+ )                              256)
+
+ zero_padding2d_26 (ZeroPadding  (None, None, None,   0          ['stage3_unit6_relu1[0][0]']
+ 2D)                            256)
+
+ stage3_unit6_conv1 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_26[0][0]']
+                                256)
+
+ stage3_unit6_bn2 (BatchNormali  (None, None, None,   1024       ['stage3_unit6_conv1[0][0]']
+ zation)                        256)
+
+ stage3_unit6_relu2 (Activation  (None, None, None,   0          ['stage3_unit6_bn2[0][0]']
+ )                              256)
+
+ zero_padding2d_27 (ZeroPadding  (None, None, None,   0          ['stage3_unit6_relu2[0][0]']
+ 2D)                            256)
+
+ stage3_unit6_conv2 (Conv2D)    (None, None, None,   589824      ['zero_padding2d_27[0][0]']
+                                256)
+
+ add_12 (Add)                   (None, None, None,   0           ['stage3_unit6_conv2[0][0]',
+                                256)                              'add_11[0][0]']
+
+ stage4_unit1_bn1 (BatchNormali  (None, None, None,   1024       ['add_12[0][0]']
+ zation)                        256)
+
+ stage4_unit1_relu1 (Activation  (None, None, None,   0          ['stage4_unit1_bn1[0][0]']
+ )                              256)
+
+ zero_padding2d_28 (ZeroPadding  (None, None, None,   0          ['stage4_unit1_relu1[0][0]']
+ 2D)                            256)
+
+ stage4_unit1_conv1 (Conv2D)    (None, None, None,   1179648     ['zero_padding2d_28[0][0]']
+                                512)
+
+ stage4_unit1_bn2 (BatchNormali  (None, None, None,   2048       ['stage4_unit1_conv1[0][0]']
+ zation)                        512)
+
+ stage4_unit1_relu2 (Activation  (None, None, None,   0          ['stage4_unit1_bn2[0][0]']
+ )                              512)
+
+ zero_padding2d_29 (ZeroPadding  (None, None, None,   0          ['stage4_unit1_relu2[0][0]']
+ 2D)                            512)
+
+ stage4_unit1_conv2 (Conv2D)    (None, None, None,   2359296     ['zero_padding2d_29[0][0]']
+                                512)
+
+ stage4_unit1_sc (Conv2D)       (None, None, None,   131072      ['stage4_unit1_relu1[0][0]']
+                                512)
+
+ add_13 (Add)                   (None, None, None,   0           ['stage4_unit1_conv2[0][0]',
+                                512)                              'stage4_unit1_sc[0][0]']
+
+ stage4_unit2_bn1 (BatchNormali  (None, None, None,   2048       ['add_13[0][0]']
+ zation)                        512)
+
+ stage4_unit2_relu1 (Activation  (None, None, None,   0          ['stage4_unit2_bn1[0][0]']
+ )                              512)
+
+ zero_padding2d_30 (ZeroPadding  (None, None, None,   0          ['stage4_unit2_relu1[0][0]']
+ 2D)                            512)
+
+ stage4_unit2_conv1 (Conv2D)    (None, None, None,   2359296     ['zero_padding2d_30[0][0]']
+                                512)
+
+ stage4_unit2_bn2 (BatchNormali  (None, None, None,   2048       ['stage4_unit2_conv1[0][0]']
+ zation)                        512)
+
+ stage4_unit2_relu2 (Activation  (None, None, None,   0          ['stage4_unit2_bn2[0][0]']
+ )                              512)
+
+ zero_padding2d_31 (ZeroPadding  (None, None, None,   0          ['stage4_unit2_relu2[0][0]']
+ 2D)                            512)
+
+ stage4_unit2_conv2 (Conv2D)    (None, None, None,   2359296     ['zero_padding2d_31[0][0]']
+                                512)
+
+ add_14 (Add)                   (None, None, None,   0           ['stage4_unit2_conv2[0][0]',
+                                512)                              'add_13[0][0]']
+
+ stage4_unit3_bn1 (BatchNormali  (None, None, None,   2048       ['add_14[0][0]']
+ zation)                        512)
+
+ stage4_unit3_relu1 (Activation  (None, None, None,   0          ['stage4_unit3_bn1[0][0]']
+ )                              512)
+
+ zero_padding2d_32 (ZeroPadding  (None, None, None,   0          ['stage4_unit3_relu1[0][0]']
+ 2D)                            512)
+
+ stage4_unit3_conv1 (Conv2D)    (None, None, None,   2359296     ['zero_padding2d_32[0][0]']
+                                512)
+
+ stage4_unit3_bn2 (BatchNormali  (None, None, None,   2048       ['stage4_unit3_conv1[0][0]']
+ zation)                        512)
+
+ stage4_unit3_relu2 (Activation  (None, None, None,   0          ['stage4_unit3_bn2[0][0]']
+ )                              512)
+
+ zero_padding2d_33 (ZeroPadding  (None, None, None,   0          ['stage4_unit3_relu2[0][0]']
+ 2D)                            512)
+
+ stage4_unit3_conv2 (Conv2D)    (None, None, None,   2359296     ['zero_padding2d_33[0][0]']
+                                512)
+
+ add_15 (Add)                   (None, None, None,   0           ['stage4_unit3_conv2[0][0]',
+                                512)                              'add_14[0][0]']
+
+ bn1 (BatchNormalization)       (None, None, None,   2048        ['add_15[0][0]']
+                                512)
+
+ relu1 (Activation)             (None, None, None,   0           ['bn1[0][0]']
+                                512)
+
+ decoder_stage0_upsampling (UpS  (None, None, None,   0          ['relu1[0][0]']
+ ampling2D)                     512)
+
+ decoder_stage0_concat (Concate  (None, None, None,   0          ['decoder_stage0_upsampling[0][0]
+ nate)                          768)                             ',
+                                                                  'stage4_unit1_relu1[0][0]']
+
+ decoder_stage0a_conv (Conv2D)  (None, None, None,   1769472     ['decoder_stage0_concat[0][0]']
+                                256)
+
+ decoder_stage0a_bn (BatchNorma  (None, None, None,   1024       ['decoder_stage0a_conv[0][0]']
+ lization)                      256)
+
+ decoder_stage0a_relu (Activati  (None, None, None,   0          ['decoder_stage0a_bn[0][0]']
+ on)                            256)
+
+ decoder_stage0b_conv (Conv2D)  (None, None, None,   589824      ['decoder_stage0a_relu[0][0]']
+                                256)
+
+ decoder_stage0b_bn (BatchNorma  (None, None, None,   1024       ['decoder_stage0b_conv[0][0]']
+ lization)                      256)
+
+ decoder_stage0b_relu (Activati  (None, None, None,   0          ['decoder_stage0b_bn[0][0]']
+ on)                            256)
+
+ decoder_stage1_upsampling (UpS  (None, None, None,   0          ['decoder_stage0b_relu[0][0]']
+ ampling2D)                     256)
+
+ decoder_stage1_concat (Concate  (None, None, None,   0          ['decoder_stage1_upsampling[0][0]
+ nate)                          384)                             ',
+                                                                  'stage3_unit1_relu1[0][0]']
+
+ decoder_stage1a_conv (Conv2D)  (None, None, None,   442368      ['decoder_stage1_concat[0][0]']
+                                128)
+
+ decoder_stage1a_bn (BatchNorma  (None, None, None,   512        ['decoder_stage1a_conv[0][0]']
+ lization)                      128)
+
+ decoder_stage1a_relu (Activati  (None, None, None,   0          ['decoder_stage1a_bn[0][0]']
+ on)                            128)
+
+ decoder_stage1b_conv (Conv2D)  (None, None, None,   147456      ['decoder_stage1a_relu[0][0]']
+                                128)
+
+ decoder_stage1b_bn (BatchNorma  (None, None, None,   512        ['decoder_stage1b_conv[0][0]']
+ lization)                      128)
+
+ decoder_stage1b_relu (Activati  (None, None, None,   0          ['decoder_stage1b_bn[0][0]']
+ on)                            128)
+
+ decoder_stage2_upsampling (UpS  (None, None, None,   0          ['decoder_stage1b_relu[0][0]']
+ ampling2D)                     128)
+
+ decoder_stage2_concat (Concate  (None, None, None,   0          ['decoder_stage2_upsampling[0][0]
+ nate)                          192)                             ',
+                                                                  'stage2_unit1_relu1[0][0]']
+
+ decoder_stage2a_conv (Conv2D)  (None, None, None,   110592      ['decoder_stage2_concat[0][0]']
+                                64)
+
+ decoder_stage2a_bn (BatchNorma  (None, None, None,   256        ['decoder_stage2a_conv[0][0]']
+ lization)                      64)
+
+ decoder_stage2a_relu (Activati  (None, None, None,   0          ['decoder_stage2a_bn[0][0]']
+ on)                            64)
+
+ decoder_stage2b_conv (Conv2D)  (None, None, None,   36864       ['decoder_stage2a_relu[0][0]']
+                                64)
+
+ decoder_stage2b_bn (BatchNorma  (None, None, None,   256        ['decoder_stage2b_conv[0][0]']
+ lization)                      64)
+
+ decoder_stage2b_relu (Activati  (None, None, None,   0          ['decoder_stage2b_bn[0][0]']
+ on)                            64)
+
+ decoder_stage3_upsampling (UpS  (None, None, None,   0          ['decoder_stage2b_relu[0][0]']
+ ampling2D)                     64)
+
+ decoder_stage3_concat (Concate  (None, None, None,   0          ['decoder_stage3_upsampling[0][0]
+ nate)                          128)                             ',
+                                                                  'relu0[0][0]']
+
+ decoder_stage3a_conv (Conv2D)  (None, None, None,   36864       ['decoder_stage3_concat[0][0]']
+                                32)
+
+ decoder_stage3a_bn (BatchNorma  (None, None, None,   128        ['decoder_stage3a_conv[0][0]']
+ lization)                      32)
+
+ decoder_stage3a_relu (Activati  (None, None, None,   0          ['decoder_stage3a_bn[0][0]']
+ on)                            32)
+
+ decoder_stage3b_conv (Conv2D)  (None, None, None,   9216        ['decoder_stage3a_relu[0][0]']
+                                32)
+
+ decoder_stage3b_bn (BatchNorma  (None, None, None,   128        ['decoder_stage3b_conv[0][0]']
+ lization)                      32)
+
+ decoder_stage3b_relu (Activati  (None, None, None,   0          ['decoder_stage3b_bn[0][0]']
+ on)                            32)
+
+ decoder_stage4_upsampling (UpS  (None, None, None,   0          ['decoder_stage3b_relu[0][0]']
+ ampling2D)                     32)
+
+ decoder_stage4a_conv (Conv2D)  (None, None, None,   4608        ['decoder_stage4_upsampling[0][0]
+                                16)                              ']
+
+ decoder_stage4a_bn (BatchNorma  (None, None, None,   64         ['decoder_stage4a_conv[0][0]']
+ lization)                      16)
+
+ decoder_stage4a_relu (Activati  (None, None, None,   0          ['decoder_stage4a_bn[0][0]']
+ on)                            16)
+
+ decoder_stage4b_conv (Conv2D)  (None, None, None,   2304        ['decoder_stage4a_relu[0][0]']
+                                16)
+
+ decoder_stage4b_bn (BatchNorma  (None, None, None,   64         ['decoder_stage4b_conv[0][0]']
+ lization)                      16)
+
+ decoder_stage4b_relu (Activati  (None, None, None,   0          ['decoder_stage4b_bn[0][0]']
+ on)                            16)
+
+ final_conv (Conv2D)            (None, None, None,   145         ['decoder_stage4b_relu[0][0]']
+                                1)
+
+ sigmoid (Activation)           (None, None, None,   0           ['final_conv[0][0]']
+                                1)
+
+==================================================================================================
+Total params: 24,456,154
+Trainable params: 24,438,804
+Non-trainable params: 17,350
+__________________________________________________________________________________________________
+None
+D:\Shahriyar_Haseeb\Code\cda_env\pretrained-encoder-unet.py:287: UserWarning: `Model.fit_generator` is deprecated and will be removed in a future version. Please use `Model.fit`, which supports generators.
+  model.fit_generator(
+Epoch 1/100
+2022-08-16 12:56:40.352819: I tensorflow/stream_executor/cuda/cuda_dnn.cc:368] Loaded cuDNN version 8100
+7500/7500 [==============================] - ETA: 0s - loss: 0.0876
+Epoch 1: val_loss improved from inf to 0.04356, saving model to D:\Shahriyar_Haseeb\Results\resenunetmodel.h5
+7500/7500 [==============================] - 523s 68ms/step - loss: 0.0876 - val_loss: 0.0436 - lr: 0.0010
+Epoch 2/100
+7500/7500 [==============================] - ETA: 0s - loss: 0.0805
+Epoch 2: val_loss did not improve from 0.04356
+7500/7500 [==============================] - 519s 69ms/step - loss: 0.0805 - val_loss: 0.0592 - lr: 0.0010
+Epoch 3/100
+7500/7500 [==============================] - ETA: 0s - loss: 0.0785
+Epoch 3: val_loss improved from 0.04356 to 0.04253, saving model to D:\Shahriyar_Haseeb\Results\resenunetmodel.h5
+7500/7500 [==============================] - 541s 72ms/step - loss: 0.0785 - val_loss: 0.0425 - lr: 0.0010
+Epoch 4/100
+7498/7500 [============================>.] - ETA: 0s - loss: 0.0769
+Epoch 4: val_loss improved from 0.04253 to 0.04241, saving model to D:\Shahriyar_Haseeb\Results\resenunetmodel.h5
+7500/7500 [==============================] - 498s 66ms/step - loss: 0.0769 - val_loss: 0.0424 - lr: 0.0010
+Epoch 5/100
+7500/7500 [==============================] - ETA: 0s - loss: 0.0757
+Epoch 5: val_loss did not improve from 0.04241
+7500/7500 [==============================] - 495s 66ms/step - loss: 0.0757 - val_loss: 0.0430 - lr: 0.0010
+Epoch 6/100
+7499/7500 [============================>.] - ETA: 0s - loss: 0.0745
+Epoch 6: val_loss did not improve from 0.04241
+7500/7500 [==============================] - 501s 67ms/step - loss: 0.0745 - val_loss: 0.0430 - lr: 0.0010
+Epoch 7/100
+7499/7500 [============================>.] - ETA: 0s - loss: 0.0736
+Epoch 7: val_loss did not improve from 0.04241
+7500/7500 [==============================] - 501s 67ms/step - loss: 0.0736 - val_loss: 0.0446 - lr: 0.0010
+Epoch 8/100
+7500/7500 [==============================] - ETA: 0s - loss: 0.0728
+Epoch 8: val_loss did not improve from 0.04241
+7500/7500 [==============================] - 504s 67ms/step - loss: 0.0728 - val_loss: 0.0429 - lr: 0.0010
+Epoch 9/100
+7499/7500 [============================>.] - ETA: 0s - loss: 0.0721
+Epoch 9: val_loss did not improve from 0.04241
+
+Epoch 9: ReduceLROnPlateau reducing learning rate to 0.00010000000474974513.
+7500/7500 [==============================] - 506s 67ms/step - loss: 0.0721 - val_loss: 0.0433 - lr: 0.0010
+Epoch 10/100
+7499/7500 [============================>.] - ETA: 0s - loss: 0.0702
+Epoch 10: val_loss did not improve from 0.04241
+7500/7500 [==============================] - 506s 68ms/step - loss: 0.0702 - val_loss: 0.0434 - lr: 1.0000e-04
+Epoch 11/100
+7499/7500 [============================>.] - ETA: 0s - loss: 0.0697
+Epoch 11: val_loss did not improve from 0.04241
+7500/7500 [==============================] - 502s 67ms/step - loss: 0.0697 - val_loss: 0.0433 - lr: 1.0000e-04
+
+*********Custom Loss*********
+2022-08-16 14:30:10.018550: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 3932160000 exceeds 10% of free system memory.
+2022-08-16 14:30:19.026882: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1310720000 exceeds 10% of free system memory.
+skipping iteration 115,N_csv=6,N_detect=0,N_match=0
+skipping iteration 167,N_csv=4,N_detect=0,N_match=0
+skipping iteration 358,N_csv=7,N_detect=0,N_match=0
+skipping iteration 883,N_csv=3,N_detect=0,N_match=0
+skipping iteration 886,N_csv=3,N_detect=3,N_match=0
+skipping iteration 932,N_csv=4,N_detect=0,N_match=0
+skipping iteration 1148,N_csv=6,N_detect=0,N_match=0
+skipping iteration 1318,N_csv=3,N_detect=0,N_match=0
+skipping iteration 1627,N_csv=3,N_detect=2,N_match=0
+skipping iteration 1639,N_csv=6,N_detect=0,N_match=0
+skipping iteration 1757,N_csv=3,N_detect=0,N_match=0
+skipping iteration 1822,N_csv=3,N_detect=0,N_match=0
+skipping iteration 1954,N_csv=3,N_detect=0,N_match=0
+skipping iteration 2450,N_csv=9,N_detect=0,N_match=0
+skipping iteration 2563,N_csv=4,N_detect=0,N_match=0
+skipping iteration 2748,N_csv=3,N_detect=0,N_match=0
+skipping iteration 2938,N_csv=4,N_detect=0,N_match=0
+skipping iteration 3080,N_csv=5,N_detect=0,N_match=0
+skipping iteration 3122,N_csv=3,N_detect=0,N_match=0
+skipping iteration 3152,N_csv=8,N_detect=1,N_match=0
+skipping iteration 3204,N_csv=4,N_detect=0,N_match=0
+skipping iteration 3246,N_csv=3,N_detect=0,N_match=0
+skipping iteration 3350,N_csv=3,N_detect=0,N_match=0
+skipping iteration 3381,N_csv=3,N_detect=1,N_match=0
+skipping iteration 3471,N_csv=3,N_detect=0,N_match=0
+skipping iteration 3502,N_csv=3,N_detect=1,N_match=0
+skipping iteration 3690,N_csv=4,N_detect=1,N_match=0
+skipping iteration 3781,N_csv=3,N_detect=0,N_match=0
+skipping iteration 3812,N_csv=3,N_detect=0,N_match=0
+skipping iteration 3966,N_csv=3,N_detect=0,N_match=0
+skipping iteration 4048,N_csv=8,N_detect=0,N_match=0
+skipping iteration 4105,N_csv=3,N_detect=0,N_match=0
+skipping iteration 4757,N_csv=3,N_detect=1,N_match=0
+skipping iteration 4758,N_csv=3,N_detect=0,N_match=0
+2022-08-16 14:45:50.064143: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 3932160000 exceeds 10% of free system memory.
+2022-08-16 14:45:51.066402: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 1310720000 exceeds 10% of free system memory.
+157/157 [==============================] - 7s 43ms/step - loss: 0.0443
+binary XE score = 0.044344
+mean and std of N_match/N_csv (recall) = 0.555366, 0.199379
+mean and std of N_match/(N_match + (N_detect-N_match))
+              (precision) = 0.842128, 0.144009
+mean and std of F_1 score = 0.644759, 0.150121
+mean and std of (N_detect - N_match)/N_detect (fraction
+              of craters that are new) = 0.123822, 0.101729
+mean and std of (N_detect - N_match)/N_csv (fraction of
+              "craters that are new, 2) = 0.098735, 0.102912
+median and IQR fractional longitude diff = 0.100318, 25:0.077109, 75:0.124105
+median and IQR fractional latitude diff = 0.096970, 25:0.073870, 75:0.119874
+median and IQR fractional radius diff = 0.075853, 25:0.057424, 75:0.093654
+mean and std of frac_duplicates: 0.007069, 0.024156
+mean and std of maximum detected pixel radius in an image =
+              20.270141, 8.374608
+absolute maximum detected pixel radius over all images =
+              40.000000
+
+###################################
+##########END_OF_RUN_INFO##########
+learning_rate=1.000000e-03, batch_size=4, filter_length=3.000000e+00, n_epoch=100
+          n_train=30000, img_dimensions=256, init=he_normal, n_filters=112, lambda=1.000000e-06
+          dropout=0.150000
+
+*********Custom Loss*********
+2022-08-16 14:46:25.353084: W tensorflow/core/framework/cpu_allocator_impl.cc:82] Allocation of 3932160000 exceeds 10% of free system memory.
+skipping iteration 1915,N_csv=9,N_detect=1,N_match=0
+skipping iteration 4024,N_csv=3,N_detect=2,N_match=0
+skipping iteration 4401,N_csv=9,N_detect=1,N_match=0
+skipping iteration 4428,N_csv=4,N_detect=3,N_match=0
+157/157 [==============================] - 7s 43ms/step - loss: 0.0918
+binary XE score = 0.091771
+mean and std of N_match/N_csv (recall) = 0.569764, 0.193144
+mean and std of N_match/(N_match + (N_detect-N_match))
+              (precision) = 0.829060, 0.131913
+mean and std of F_1 score = 0.649210, 0.129188
+mean and std of (N_detect - N_match)/N_detect (fraction
+              of craters that are new) = 0.135941, 0.090102
+mean and std of (N_detect - N_match)/N_csv (fraction of
+              "craters that are new, 2) = 0.113205, 0.110973
+median and IQR fractional longitude diff = 0.096468, 25:0.079991, 75:0.113544
+median and IQR fractional latitude diff = 0.095424, 25:0.077570, 75:0.113620
+median and IQR fractional radius diff = 0.078476, 25:0.065841, 75:0.091843
+mean and std of frac_duplicates: 0.014230, 0.028337
+mean and std of maximum detected pixel radius in an image =
+              25.067370, 7.792846
+absolute maximum detected pixel radius over all images =
+              40.000000
+
+###################################
+###################################
+Traceback (most recent call last):
+  File "D:\Shahriyar_Haseeb\Code\cda_env\pretrained-encoder-unet.py", line 403, in <module>
+    get_dataset()
+  File "D:\Shahriyar_Haseeb\Code\cda_env\pretrained-encoder-unet.py", line 396, in get_dataset
+    train_and_test_model(Data, Craters)
+  File "D:\Shahriyar_Haseeb\Code\cda_env\pretrained-encoder-unet.py", line 317, in train_and_test_model
+    sample_data = {'imgs': [gen_imgs['input_images'][...].astype('float32'),
+numpy.core._exceptions._ArrayMemoryError: Unable to allocate 7.32 GiB for an array with shape (30000, 256, 256) and data type float32
+Closing remaining open files:D:\Shahriyar_Haseeb\Datasets\train_craters.hdf5...doneD:\Shahriyar_Haseeb\Datasets\dev_craters.hdf5...doneD:\Shahriyar_Haseeb\Datasets\test_craters.hdf5...done
+
+(cda_env) D:\Shahriyar_Haseeb\Code\cda_env>
